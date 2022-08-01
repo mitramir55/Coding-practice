@@ -14,6 +14,8 @@ for i in range(len(letters_list)):
 reverse_letters_dict = {v: k for (k, v) in letters_dict.items()}
 reverse_letters_dict
 letters_dict
+
+
 def rot13(word):
     new_letters_list = []
     ref_word_list = list(word)
@@ -21,14 +23,48 @@ def rot13(word):
     for letter in ref_word_list:
         print(letter)
         
-        num = letters_dict[letter]
-        if num>12: 
-            new_letter = reverse_letters_dict[num%13]
-        else: 
-            new_letter = reverse_letters_dict[num+13]
+        # NaL = not a letter
+        try:
+            num = letters_dict[letter.lower()]
+        except: 
+            num = 'NaL'
+            print('nal')
 
-        new_letters_list.append(new_letter)
+        # append the main item found if it's not a letter
+        if num == 'NaL':
+            new_letters_list.append(letter)
+
+        # append the new letter if it is a letter
+
+        else:
+            if num>12: 
+                new_letter = reverse_letters_dict[num%13]
+            else: 
+                new_letter = reverse_letters_dict[num+13]
+
+            if letter.isupper():new_letter = new_letter.upper()
+
+            new_letters_list.append(new_letter)
 
     return "".join(new_letters_list)
 
-rot13('m')
+rot13('m, to')
+
+
+
+# better solution
+
+import string
+from string import ascii_lowercase, ascii_uppercase
+
+def rot13(message):
+    lower = str.maketrans(ascii_lowercase, ascii_lowercase[13:] + ascii_lowercase[:13])
+    upper = str.maketrans(ascii_uppercase, ascii_uppercase[13:] + ascii_uppercase[:13])
+    return message.translate(lower).translate(upper)
+
+lower = str.maketrans(ascii_lowercase, ascii_lowercase[13:] + ascii_lowercase[:13])
+'ak'.translate(lower)
+
+ascii_lowercase[13:] + ascii_lowercase[:13]
+
+ascii_lowercase[13:] + ascii_lowercase[:13]
