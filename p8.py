@@ -30,7 +30,7 @@ def snail(array):
     # visited mark
     array[0][0] = '0'
 
-    while True:
+    while True: 
         # which way to go?
         direction_function = directions[direction_cnt%4]
 
