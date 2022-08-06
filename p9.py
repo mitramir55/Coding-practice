@@ -52,3 +52,6 @@ def snail(array):
                 del i[0]
 
     return results
+
+
+# practicing and learning the fundamentals
