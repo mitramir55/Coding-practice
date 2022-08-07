@@ -55,3 +55,21 @@ def snail(array):
 
 
 # practicing and learning the fundamentals
+
+
+import numpy as np
+
+def find_uniq(arr):
+    unique_values = list(set(arr))
+    
+    count_dict = {unique_values[i]: arr.count(unique_values[i]) for i in range(len(unique_values))}
+
+    return [k for k, v in count_dict.items() if min(count_dict.values()) == v][0]
+
+arr = [ 1, 1, 1, 2, 1, 1 ]
+
+find_uniq(arr)
+
+a, b = set(arr)
+
+set(arr)
