@@ -73,3 +73,40 @@ find_uniq(arr)
 a, b = set(arr)
 
 set(arr)
+
+n = 6
+
+len_ = n*2-1
+
+list_ = [' ' * len_] * n
+list_
+print(len_)
+len(list_)
+
+
+for i in range(0, len_-2):
+    print("\ni = ", i)
+    print('start: ', int(len_/2)-i)
+    print('end: ', int(len_/2)+i)
+    str_list = list(list_[i])
+    print('raw str_list = ', str_list)
+
+    start = int(len_/2)-i
+    end = int(len_/2)+i -1
+    n_stars = end - start + 1
+
+    str_list[start: end] = "*" * n_stars
+    print('str_list = ', str_list)
+    str_ = "".join(str_list)
+    list_[i] = str_
+
+    print(list_)
+list_
+"*" * (10 - 5)
+
+str_list = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+
+str_list[1:3] = '*'*2
+str_list
+
+len('           ')
