@@ -15,3 +15,22 @@ def order(words):
   return ' '.join(sorted(words.split(), key=lambda w:sorted(w)))
 
 sorted(sentence.split(), key=lambda w: sorted(w))
+
+word = 'this'
+''.join(list(word)[::-1])
+
+
+text = "double  spaces" 
+spaces = re.findall('\s+', text)
+
+reversed_words = [''.join(list(word)[::-1]) for word in text.split()]
+
+for i in range(len(text.split())):
+  ret_str = reversed_words[i]
+
+  if i<len(spaces):
+    ret_str += spaces[i]
+
+
+
+[1,-2,3,-4,5] * [-1]
