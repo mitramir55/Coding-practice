@@ -55,3 +55,5 @@ nodeB.next = nodeC
 nodeC.next = nodeD
 
 count_nodes(head=nodeA)
+
+
