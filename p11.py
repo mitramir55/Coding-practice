@@ -18,5 +18,5 @@ np.where(haystack=='needle')
 
 3//2
 'test'[1:-1]
-4-1// 
+4-1// 2
 type(3//2)
