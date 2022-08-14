@@ -47,3 +47,12 @@ for j in range(n, len(arr)):
 
 dict_ = {'small':1, 'big':20 ,'middle':10}
 sorted(dict_, key=lambda x:x[1], reverse=True)[0]
+
+tills_dict = {'till_0': 2, 'till_1': 1, 'till_2': 2, 'till_3': 3, 'till_4': 4}
+min_till = sorted(tills_dict.items(), key=lambda x:x[1], reverse=True)
+min_ = tills_dict[min_till]
+min_
+min_till
+
+min_till, min_ = sorted(tills_dict.items(), key=lambda x:x[1])[0]
+min_till
