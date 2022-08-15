@@ -59,3 +59,19 @@ min_till
 n=2
 l = n*[0]
 l.index(min(l))
+
+# n * k = 89
+n = 89
+ds = [int(i) for i in str(d)]
+ds
+
+# Is there an integer k such as : (a ^ p + b ^ (p+1) + c ^(p+2) + d ^ (p+3) + ...) = n * k
+
+k = 1
+n = 89
+def funct(n, p):
+    
+sum([d**i for i in range(len())])
+
+
+

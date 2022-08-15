@@ -133,3 +133,28 @@ a.print_tree()
 a.get_max()
 a.get_min()
 a.exists(0)
+
+
+# peak finding 
+# https://favtutor.com/blogs/find-peak-element
+
+arr = [0, 1, 10, 2, 50, 5, 90, 21]
+
+def find_peak(arr, lower_bound, upper_bound, n):
+
+    mid = (upper_bound-lower_bound)/2 + lower_bound
+
+    if (mid==0 or arr[mid-1] <= arr[mid]) and (mid==n-1 or arr[mid] >= arr[mid+1]):
+        return mid
+    elif arr[mid-1] > arr[mid] and arr[mid] < arr[mid+1]:
+
+
+
+find_peak(arr, 0, len(arr)-1)
+
+
+
+
+
+
+
