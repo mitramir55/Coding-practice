@@ -1,5 +1,5 @@
 # create a tree in python 
-# https://stackoverflow.com/questions/2598437/how-to-implement-a-binary-tree
+# https://blog.boot.dev/computer-science/binary-search-tree-in-python/
 
 class Node:
 

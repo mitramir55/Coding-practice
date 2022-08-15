@@ -56,3 +56,6 @@ min_till
 
 min_till, min_ = sorted(tills_dict.items(), key=lambda x:x[1])[0]
 min_till
+n=2
+l = n*[0]
+l.index(min(l))
