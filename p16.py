@@ -81,3 +81,10 @@ print(f'Time spent: {end-start}')
 
 #  Simple Encryption Series:
 # Simple Encryption #1 - Alternating Split
+'sdlfjsdkl'.isup
+
+
+def solution(s):
+    return ''.join(' ' + c if c.isupper() else c for c in s)
+
+solution('CadaverKiller')
