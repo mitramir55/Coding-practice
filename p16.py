@@ -87,4 +87,4 @@ print(f'Time spent: {end-start}')
 def solution(s):
     return ''.join(' ' + c if c.isupper() else c for c in s)
 
-solution('CadaverKiller')
+solution('CadaverKillere')
