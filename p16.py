@@ -45,3 +45,39 @@ print(f'Time spent: {end-start}')
 arr1 = [1,2,3,3]
 arr1.remove(max(arr1))
 arr1
+
+# Time spent: 0.0209
+
+def sum_array(arr):
+    return sum(sorted(arr)[1:-1]) if arr and len(arr) > 1 else 0
+
+
+start = time.time()
+sum_array(arr1)
+end = time.time()
+
+print(f'Time spent: {end-start}')
+
+
+
+# Time spent: 
+
+def sum_array(arr):
+    
+    try:
+        arr.remove(max(arr))
+        arr.remove(min(arr))
+        
+        return sum(arr)
+    
+    except: return 0
+
+
+start = time.time()
+sum_array(arr1)
+end = time.time()
+print(f'Time spent: {end-start}')
+
+
+#  Simple Encryption Series:
+# Simple Encryption #1 - Alternating Split
