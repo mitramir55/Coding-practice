@@ -43,3 +43,19 @@ if n > 10:
 # with walrus
 if (n := 30) > 10:
     print(f"{n} is greater than 10")
+
+int('')
+
+0.1%1
+
+[str(10**(i)) for i, f in enumerate('25') if f!='0']
+
+7.304%1
+import regex as re
+
+"www.xakep.ru"
+"https://www.cnet.com"
+
+re.findall("[(https*:\/\/)*(www.)*]([a-zA-Z0-9]*)\.", 'http://google.co.jp')
+
+re.findall("((https*:\/\/)*(www\.)*)*([a-zA-Z0-9\-]*)\.", 'https://hyphen-site.org')
