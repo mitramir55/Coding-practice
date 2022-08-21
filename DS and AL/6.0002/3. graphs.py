@@ -128,7 +128,7 @@ def DFS(graph, start, end, path, shortest):
         # avoid cycles
         if node not in path:
             if shortest == None or len(path) < len(shortest):
-                new_path = DFS(graph, node, end, path, shortest=None)
+                new_path = DFS(graph, node, end, path, shortest)
                 if new_path != None: shortest = new_path
 
         else: print('Already visited!')
@@ -164,7 +164,7 @@ def BFS(graph, start, end, print_queue=True):
 
     init_path = [start]
     path_queue = [init_path]
-
+    print('type(start) = ', type(start))
     while path_queue != []:
 
         # print current queue
