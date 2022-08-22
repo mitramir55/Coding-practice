@@ -59,3 +59,6 @@ import regex as re
 re.findall("[(https*:\/\/)*(www.)*]([a-zA-Z0-9]*)\.", 'http://google.co.jp')
 
 re.findall("((https*:\/\/)*(www\.)*)*([a-zA-Z0-9\-]*)\.", 'https://hyphen-site.org')
+
+
+enumerate()
