@@ -13,3 +13,73 @@ new_alphabet = ascii_lowercase[2:] + ascii_lowercase[:2]
 txt = 'this is '
 txt.translate(txt.maketrans(ascii_lowercase, new_alphabet))
 
+import regex as re 
+
+re.findall('\(', txt)
+
+re.findall('\)', txt)
+
+txt = 'hi(hi)'
+with_par = re.findall(r'.*[\(\)].*', txt)
+with_par
+
+
+re.findall(r'.*\(*.*\).*', txt)
+
+re.findall(r'\(+.*\)+', txt)[0] == re.findall(r'.*\(*.*\).*', txt)[0]
+with_par.count('(') == with_par.count(')')
+
+if re.findall(r'\(*.*\)*', txt):
+
+txt.find('(')
+    open_idx
+txt.index('(')
+
+
+import regex as re
+def valid_parentheses(txt):
+    
+    if txt=='': return True
+    
+    open_close_span = re.findall(r'\(+.*\)+', txt)
+    all_pars = re.findall(r'.*[\(\)].*', txt)
+    
+    # fist make sure all parantheses in text are open close
+    # so we don't get an open paranthesis at the end
+    if open_close_span == all_pars and open_close_span: 
+        open_close_span = open_close_span[0]
+        
+        # there might be something like (jisd()
+        # so we count the open and close pars
+        return open_close_span.count('(') == open_close_span.count(')')
+    
+    else: return False
+
+
+
+
+
+
+
+
+
+txt_list = list(txt)
+close_idx = txt.rfind(')')
+open_idx = txt.find('(')
+
+for _ in range(len(txt)//2):
+
+    txt_list = list(txt)
+    print(txt)
+    close_idx = txt.rfind(')')
+    open_idx = txt.find('(')
+    print(close_idx)
+
+    if close_idx > open_idx:
+
+        txt_list[close_idx] = ''
+        txt_list[open_idx] = ''
+
+        txt = "".join(txt_list)
+txt
+if re.findall(r'\(', txt) == None: return True
