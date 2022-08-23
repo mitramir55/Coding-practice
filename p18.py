@@ -83,3 +83,22 @@ for _ in range(len(txt)//2):
         txt = "".join(txt_list)
 txt
 if re.findall(r'\(', txt) == None: return True
+
+
+a = -8
+int(a/5)
+if a%5==0: res = a
+
+if a>0: m = int(a/5) + 1
+else: m = int(a/5)
+
+res = 5 * m
+res
+
+a = - 16
+a + (5 - a) % 5
+a = 6
+-6%5
+a + (-a)% 5
+
+'scissors paper rock lizard spock scissors lizard paper spock rock scissors'
