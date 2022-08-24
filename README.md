@@ -16,7 +16,8 @@ Stage 1:
  * Data structure and algorithm 
     courses: 
     * [course 1](https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/)
-    * [course 2]()
+    * [course 2](https://ocw.mit.edu/courses/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/video_galleries/lecture-videos/) - until the random walk
+    * [course 3](https://www.youtube.com/watch?v=8hly31xKli0)
 
 Helpful vids: 
 * [link](https://www.youtube.com/c/eniolaa)
