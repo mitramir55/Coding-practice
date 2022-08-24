@@ -90,3 +90,87 @@ def to_camel_case(s):
 
 ret = txt[0] + re.sub('[-_]', '', txt.title())[1:] if txt else txt
 ret
+
+a = 'a1' 
+a+1
+import string
+code = 'hmster'
+keys = sorted(list(code))
+keys
+string.ascii_lowercase
+all_letters = list(string.ascii_lowercase)
+all_letters
+all_ords = {l:ord(l) for l in all_letters}
+keys_ords = {l: ord(l) for l in keys}
+
+keys_ords = list(keys_ords.values())
+
+txt = 'hamster'
+ret_l = []
+for l in txt:
+    l_ord = ord(l)
+    print(l_ord)
+    if l in keys_ords: 
+        keys_ords.append(l + '1')
+    elif l_ord < keys_ords[0]:
+        l_ord
+
+ord('a')
+
+keys_ords.values()#[0]
+ret_l = []
+
+keys
+
+two_lists = string.ascii_lowercase + string.ascii_lowercase
+two_lists
+
+string.ascii_lowercase.index('a')
+
+for i in range(len(keys)):
+    string.ascii_lowercase.index(keys[i])
+    if l in keys: curr_key = l
+
+
+
+
+keys = sorted(list(code))
+all_letters = string.ascii_lowercase
+cut_idx = all_letters.index(keys[0])
+letters_str = all_letters[cut_idx:] + all_letters[:cut_idx]
+letters_str
+
+
+keys_visited = []
+encoding_dict = {}
+curr_key = None
+# create a dictionary of what the letters should translate into 
+for l in letters_str:
+
+    # if this letter is a key
+    if l in keys: 
+        curr_key = l
+        encoded = curr_key + '1'
+        encoding_dict[l] = encoded
+    else: 
+        appendix = str(letters_str.index(l) - letters_str.index(curr_key))
+        encoded = curr_key + appendix
+        encoding_dict[l] = encoded
+encoding_dict
+
+translation = str.maketrans(encoding_dict)
+
+encoded_ret = txt.translate(translation)
+
+
+txt.translate(str.maketrans(encoding_dict))
+
+[l.translate(translation) for l in txt]
+
+ret_list = []
+for l in txt:
+    print(l)
+    ret_list.append(encoding_dict.get(l))
+
+len(encoding_dict)
+encoding_dict
