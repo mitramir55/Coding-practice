@@ -76,4 +76,17 @@ class SinglyLinkedList:
                 if curr.data == data:
                     curr.data = curr.next
         else: curr = curr.next_node
+import string
+import regex as re
+list_ = re.sub('[-_]', ' ', 'The_Stealth_Warrior').split()
+list_[0] + [word.capitalize() for word in list_[1:]]
 
+
+txt = 'the_stealth_Warrior'
+txt.title().translate(None, '-_')
+
+def to_camel_case(s):
+    return s[0] + s.title().translate(None, "-_")[1:] if s else s
+
+ret = txt[0] + re.sub('[-_]', '', txt.title())[1:] if txt else txt
+ret
