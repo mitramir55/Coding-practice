@@ -21,3 +21,6 @@ Stage 1:
 
 Helpful vids: 
 * [link](https://www.youtube.com/c/eniolaa)
+
+
+Q : in doubly linked list when wanting to print curr. why does it blow up?

@@ -1,5 +1,3 @@
-from turtle import position
-
 
 class Node:
     def __init__(self, data, next_node=None, prev_node=None) -> None:
@@ -147,6 +145,8 @@ class DoublyLinkedList:
         curr = self.head
 
         while curr:
+            # why does it blow up?
+            # print(curr)
             if curr == self.head:
                 ret_l.append(f'Head is {curr.data}')
 
@@ -164,6 +164,7 @@ class DoublyLinkedList:
 
 doubly_linked = DoublyLinkedList()
 
+print(Node(5))
 for i in range(6):
     doubly_linked.add_node(i)
 
