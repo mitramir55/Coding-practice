@@ -102,3 +102,38 @@ a = 6
 a + (-a)% 5
 
 'scissors paper rock lizard spock scissors lizard paper spock rock scissors'
+
+
+
+sum_ = 0
+# 
+int(biggest_p)
+
+binary_l = []
+
+i = 0
+num = 12
+i = int(num ** (1/2))
+i
+
+while num > 0 and i >= 0:
+    num -= 2**i
+    binary_l.append(i)
+    print(i)
+    i -= 1
+
+binary_l
+binary_placeholder = [0] * (max(binary_l)+1)
+binary_placeholder
+binary_placeholder[binary_l] = 1
+
+for i in binary_l:
+    binary_placeholder[i] = 1
+binary_placeholder.reverse()
+"".join(str(i) for i in binary_placeholder)
+
+int('12', 2)
+
+bin(12)[2:]
+bin(-12)
+bin(12)
