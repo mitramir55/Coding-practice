@@ -134,6 +134,19 @@ binary_placeholder.reverse()
 
 int('12', 2)
 
+
 bin(12)[2:]
 bin(-12)
 bin(12)
+
+
+
+recipe = {'fjad': 562, 'dsfjk': 656, 'dslkfj': 555}
+available = {'fjad': 2, 'dsfjk': 656, 'dslkfj': 555}
+
+[available.get(item, 0)/val for item, val in recipe.items()]
+
+
+# one space for chars
+# three for words
+# strip the text and ignore them
