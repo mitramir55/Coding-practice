@@ -16,6 +16,17 @@ class SinglyLinkedList:
         return self.head is None
 
 
+    def get_node_at_idx(self, idx):
+
+        position = 0
+        curr = self.head
+        if idx == 0: return curr
+        while position < idx:
+            curr = curr.next_node
+            position += 1
+
+        return curr
+
     def add_node(self, data):
         # we don't check for duplicates
         # if self.search(): return 'We already have this!'
@@ -126,15 +137,20 @@ class SinglyLinkedList:
             curr = curr.next_node
 
         return '\n ->'.join(ret_l)
-    def size(self):
-        return self.__count
+    def __len__(self):
+        count = 0 
+        curr = self.head
+        while curr:
+            count +=1
+            curr = curr.next_node
+        return count
 
 singly_list = SinglyLinkedList()
 
 for i in range(10):
     singly_list.add_node(i)
 
-singly_list.size()
+singly_list.__len__()
 singly_list.search(5)
 
 print(singly_list)
