@@ -6,10 +6,11 @@ os.getcwd()
 from p6_SinglyLinkedList import SinglyLinkedList
 
 
-
+# issue in the first run:
+# I didn't look at mid_idx - 1. This creates unbalanced groups
 
 def merge_sort_ll(linked_list):
-    if linked_list.__len__() == 1 or linked_list == None: return linked_list
+    if linked_list.__len__() == 1 or linked_list.head == None: return linked_list
 
     left_side, right_side = split_ll(linked_list)
 
@@ -21,7 +22,7 @@ def merge_sort_ll(linked_list):
 def compare_and_merge_ll(left_side, right_side):
 
     new_ll = SinglyLinkedList()
-    new_ll.head = 0
+    new_ll.add_node(0)
     curr = new_ll.head
 
     left_head = left_side.head
@@ -43,11 +44,11 @@ def compare_and_merge_ll(left_side, right_side):
 
         else:
             if right_head.data > left_head.data:
-                curr.next_node = right_head.data
+                curr.next_node = right_head
                 right_head = right_head.next_node
 
             else: 
-                curr.next_node = left_head.data
+                curr.next_node = left_head
                 left_head = left_head.next_node
 
         curr = curr.next_node
@@ -66,7 +67,7 @@ def split_ll(linked_list):
 
     ll_len = linked_list.__len__()
     mid_idx = ll_len // 2
-    mid_node = linked_list.get_node_at_idx(mid_idx)
+    mid_node = linked_list.get_node_at_idx(mid_idx-1)
 
     right_side = SinglyLinkedList()
     right_side.head = mid_node.next_node
