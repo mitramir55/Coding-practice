@@ -10,6 +10,11 @@ from p6_SinglyLinkedList import SinglyLinkedList
 # I didn't look at mid_idx - 1. This creates unbalanced groups
 
 def merge_sort_ll(linked_list):
+
+    """
+    runs in O(nk log n)
+    
+    """
     if linked_list.__len__() == 1 or linked_list.head == None: return linked_list
 
     left_side, right_side = split_ll(linked_list)
@@ -21,6 +26,9 @@ def merge_sort_ll(linked_list):
 
 def compare_and_merge_ll(left_side, right_side):
 
+    """
+    runs in linear time O(n)
+    """
     new_ll = SinglyLinkedList()
     new_ll.add_node(0)
     curr = new_ll.head
@@ -59,6 +67,12 @@ def compare_and_merge_ll(left_side, right_side):
 
 def split_ll(linked_list):
 
+    """
+    Takes O (k log n)
+    k: mid point -> each time we iterate list items
+    to get to the mid point
+
+    """
     if linked_list == None or linked_list.head == None:
         return linked_list, None
 

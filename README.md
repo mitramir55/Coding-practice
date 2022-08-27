@@ -24,3 +24,5 @@ Helpful vids:
 
 
 Q : in doubly linked list when wanting to print curr. why does it blow up?
+
+Q: How to make merge sort on linked lists efficient?
