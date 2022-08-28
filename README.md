@@ -21,6 +21,7 @@ Stage 1:
 
 Helpful vids: 
 * [link](https://www.youtube.com/c/eniolaa)
+* clamp function: when you want to create a function that puts inputs in a range of min and max
 
 
 Q : in doubly linked list when wanting to print curr. why does it blow up?

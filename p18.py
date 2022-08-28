@@ -150,3 +150,55 @@ available = {'fjad': 2, 'dsfjk': 656, 'dslkfj': 555}
 # one space for chars
 # three for words
 # strip the text and ignore them
+"".format(255, 165, 1)
+"{:02x}".format(55)
+
+"#{0:02x}{1:02x}{2:02x}".format(255, 165, 1)
+
+
+def helper(c_count, i, nums_l):
+
+    res = []    
+
+    # if only two numbers were consec
+    if c_count == 1: res = [str(nums_l[i-1]), str(nums_l[i])]
+    
+    # if more than two were consec
+    elif c_count >= 2: res = [str(nums_l[i-c_count]) + '-' + str(nums_l[i])]
+
+    return res
+
+
+def solution(nums_l):
+    
+    # c_count counts the number of successive integers
+    ret_l = []
+    c_count = 0
+
+    for i in range(len(nums_l)-1):
+        
+        # check if the numbers are consecutive
+        if nums_l[i] + 1 == nums_l[i+1]:
+            c_count += 1
+                
+        if i == len(nums_l) -2:
+            res = helper(c_count, i+1, nums_l)
+            ret_l += res
+
+        if nums_l[i] + 1 != nums_l[i+1]:
+            
+            # ----
+            # then if none is true, continue adding numbers to the ret_l
+            ret_l.append(str(nums_l[i]))
+            if i == len(nums_l) - 2: ret_l.append(str(nums_l[i+1]))
+            c_count = 0
+        
+
+    return ret_l
+
+
+a = [1,2,4]   
+a.append([1,4])
+a        
+test.assert_equals(solution([-6,-3,-2,-1,0,1,3,4,5,7,8,9,10,11,14,15,17,18,19,20]), '-6,-3-1,3-5,7-11,14,15,17-20')
+test.assert_equals(solution([-3,-2,-1,2,10,15,16,18,19,20]), '-3--1,2,10,15,16,18-20')
