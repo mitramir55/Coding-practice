@@ -36,3 +36,6 @@ It depends on whether we're looking at many big numbers or a few.
 
 A few: looking into a list seems to be a good option.
 Many: Maybe better to forget about the lists! cause not too many are available.
+
+
+
