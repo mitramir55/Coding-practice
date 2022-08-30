@@ -109,11 +109,5 @@ def is_prime(num):
         else: break
     return True
 
-    # before checking the large numbers,
-    # see if the square root is less than 40
-    # if it is, then we've checked it before to make sure the number is not 
-    # devisable by prime numbers < its sqrt 
-    if num > 41 and num_sqrt < 41:
-        return True
 
 is_prime(73)
