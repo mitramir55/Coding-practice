@@ -107,7 +107,22 @@ def is_prime(num):
             if num % i == 0: 
                 return False
         else: break
+
+    # if the number was in none of those
+    # start with 41 and go up two times
+    dev = 41
+    
+    while dev <= num_sqrt:
+        if num % dev ==0: 
+            return False
+        else: 
+            dev += 2
+
+
     return True
 
 
 is_prime(73)
+
+num_sqrt = int(math.sqrt(num))
+
