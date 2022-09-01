@@ -49,3 +49,5 @@ def is_valid(arr):
 
 
 
+i = 0
+not i
