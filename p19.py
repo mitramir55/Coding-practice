@@ -49,3 +49,43 @@ all_l
 
 all_l
 dict_.items()
+
+
+'fdsf'.split()
+
+count_dict = {1:5, 5:0}
+any(map(count_dict.values(), 0))
+map(count_dict.values(), 0)
+
+sum(1 for i in count_dict.values() if i==0 or i>1)
+
+
+ arr = [[1, 3, 2, 5, 7, 9, 4, 6, 8],
+        [4, 9, 8, 2, 6, 1, 3, 7, 5],
+        [7, 5, 6, 3, 8, 4, 2, 1, 9],
+        [6, 4, 3, 1, 5, 8, 7, 9, 2],
+        [5, 2, 1, 7, 9, 3, 8, 4, 6],
+        [9, 8, 7, 4, 2, 6, 5, 3, 1], 
+        [2, 1, 4, 9, 3, 5, 6, 8, 7], 
+        [3, 6, 5, 8, 1, 7, 9, 2, 4], 
+        [8, 7, 9, 6, 4, 2, 1, 3, 5]]
+
+        
+
+# i = [0, 9]
+
+
+for i in range(10):
+    
+    hori_dict = {}
+    vert_dict = {}
+
+    for j in range(10):
+        hori_val = arr[i][j]
+        verti_val = arr[j][i]
+
+        hori_dict[hori_val] = hori_dict.get(hori_val, 0) + 1
+        vert_dict[verti_val] = vert_dict.get(hori_val, 0) + 1
+
+    if sum(1 for i in vert_dict.values() if i==0 or i>1) or sum(1 for i in hori_dict if i==0 or i>1): return False
+return True
