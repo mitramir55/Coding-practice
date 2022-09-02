@@ -70,7 +70,23 @@ sum(1 for i in count_dict.values() if i==0 or i>1)
         [3, 6, 5, 8, 1, 7, 9, 2, 4], 
         [8, 7, 9, 6, 4, 2, 1, 3, 5]]
 
-        
+def is_valid(arr):        
+
+    correct = list(range(1,10))
+    
+    for row in arr:
+        if row != correct: return False
+
+    cols = list(zip(*arr))
+    for col in cols:
+        if col != correct: return False
+
+    for i in range(0, 8, 3):
+        # 0, 3, 6
+        for j in range(0, 8, 3):
+            matrix = [x[i:i+3] for x in arr[j:j+3]]
+[*arr]
+arr.reshape(-1, 1)
 
 # i = [0, 9]
 
