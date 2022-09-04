@@ -28,3 +28,17 @@ def counting_valleys(p):
 
 counting_valleys(p)
 
+from itertools import permutations
+
+
+s = 'dsfdsf'
+ret_l = []
+indices = list(range(len(s)))
+
+indices
+idx_perms = list(permutations(indices))
+
+for idx in idx_perms:
+    ret_l.append(''.join([s[i] for i in idx]))
+
+set(ret_l)
