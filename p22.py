@@ -42,3 +42,12 @@ for idx in idx_perms:
     ret_l.append(''.join([s[i] for i in idx]))
 
 set(ret_l)
+
+
+
+from math import sqrt, ceil
+
+ceil(1.0000000000000000006)
+
+n = 3
+list(range(n * (n-1) + 1, n * (n+1), 2))
