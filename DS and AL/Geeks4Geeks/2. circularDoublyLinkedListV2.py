@@ -1,3 +1,4 @@
+from distutils.log import error
 from logging import raiseExceptions
 
 
@@ -13,43 +14,46 @@ class Node:
 
 class DoublyCircularLinkedList:
 
-    def __init__(self, head=None, last_node=None):
+    def __init__(self, head=None):
         self.head = head
-        self.last_node = last_node
 
     def add(self, data):
-
+        """
+        adding in the beginning
+        """
         new_node = Node(data)
 
         if self.head == None:
+            new_node.next_node = None
+            new_node.prev_node = None
             self.head = new_node
-
-        elif self.head and self.last_node==None:
-            
-            # define the nodes
-            self.last_node = self.head
-            self.head = new_node
-
-            # head -> last and last -> head
-            self.last_node.next_node = self.head
-            self.head.next_node = self.last_node
-
-            self.last_node.prev_node = self.head
-            self.head.prev_node = self.last_node
-
 
         else:
-            # new_head=new_node -> prev head
-            previous_head = self.head
-            previous_head.prev_node = new_node
+            if self.__len__() == 1:
+                # new node -> previous head 
+                previous_head = self.head
+                new_node.next_node = previous_head
 
-            # new_node props
-            self.head = new_node
-            new_node.next_node = previous_head
+                previous_head.next_node = new_node
+                self.head = new_node
 
-            # last head ->  new_head
-            self.last_node.next_node = new_node
-            new_node.prev_node = self.last_node
+                # new node <- previous head
+                previous_head.prev_node = new_node
+                new_node.prev_node = previous_head
+
+            else:
+                # last node new head -> previous head 
+                last_node = self.head.prev_node
+                previous_head = self.head
+
+                # last -> new head -> previous head
+                last_node.next_node = new_node
+                new_node.next_node = previous_head
+
+                # last <- new_head <- previous head
+                previous_head.prev_node = new_node
+                new_node.prev_node = last_node
+
 
     def __len__(self):
         curr = self.head
@@ -60,9 +64,11 @@ class DoublyCircularLinkedList:
             if curr == self.head: break
         return count
 
-    def insert(self, data, idx):
+    def insert_at(self, data, idx):
 
         if idx > self.__len__(): raiseExceptions(IndexError('Index out of range Miti!'))
+        elif idx == 0: return self.add(self, data)
+
         new_node = Node(data)
         curr = self.head
 
@@ -70,48 +76,38 @@ class DoublyCircularLinkedList:
         position = 0
 
         # go up until we get to the position before the index we have in mind
+        # position will be idx -1
         while position < idx-1:
             curr = curr.next_node
             position += 1 
 
-        # previous node -> node in idx -> previous.next_node
+        # previous node -> node in idx -> next_node
         previous_node = curr
         next_node = curr.next_node
         
-        # previous node -> node in idx
+        # previous node -> node in idx -> next_node
         previous_node.next_node = new_node
-        new_node.prev_node = previous_node
-            
         new_node.next_node = next_node
-        next_node.previous_node = new_node
 
-    def delete(self, idx):
+        # previous node <- node in idx <- next_node
+        new_node.prev_node = previous_node
+        next_node.previous_node = new_node
+            
+
+    def delete_at(self, idx):
 
         if self.head==None: raiseExceptions('The list is empty')
-        if idx > self.__len__()-1: raise(IndexError('Index out of range Miti!'))
+        if idx > self.__len__() - 1: raise(IndexError('Index out of range Miti!'))
 
-
-        if self.__len__() == 2:
-            # if we only had head and last nodes
-            if idx == 0:
-                self.last_node = self.head
-                self.last_node.next_node = None
-                self.last_node.prev_node = None
-            # i have to rewrite it cause we don't want the head
-            # to be the last too
-            elif idx == 1:
-                self.head.next_node = None
-                self.head.prev_node = None
-                self.last_node = None
-
-        elif idx == self.__len__() - 1:
-            self.last_node = self.last_node.prev_node
-            self.last_node.next_node = self.head
-
-            self.head.prev_node = self.last_node
+        elif self.__len__() == 1 and idx == 0:
+            self.head = None
             
         else: 
-            curr = self.head
+            if idx == 0: 
+                curr = self.head.prev_node
+                self.head = self.head.next_node
+            else: curr = self.head
+
 
             # idx = 1, position = 1
             # idx = 2, position = 0
@@ -120,7 +116,6 @@ class DoublyCircularLinkedList:
             while position < idx - 1:
                 position += 1
                 curr = curr.next_node
-            
             
             # previous node -> delete idx -> next_node
             previous_node = curr
@@ -131,10 +126,15 @@ class DoublyCircularLinkedList:
 
     def delete_val(self, data):
 
-        if self.head == None: raiseExceptions('List is empty Miti!')
+        # if not self.head: return ('List is empty Miti!')
+
         curr = self.head
         while curr:
             if curr.data == data:
+
+                if curr == self.head:
+                    self.head = self.head.next_node
+
                 # previous node -> this one -> next node
                 previous_node = curr.prev_node
                 next_node = curr.next_node
@@ -142,24 +142,25 @@ class DoublyCircularLinkedList:
                 previous_node.next_node = next_node
                 next_node.prev_node = previous_node
 
+            curr = curr.next_node
+
+            if curr == self.head: raiseExceptions(ValueError(f'{data} not in the list!'))
+
+
     def __repr__(self) -> str:
         
         curr = self.head
-        if self.head == None: return 'empty list.'
+        if not curr: return 'empty list.'
+
         ret_str = ''
+        ret_str += f'Head node: date = {curr.data}'
 
         while curr:
-
-            if curr == self.head: 
-                ret_str += f'Head node: date = {curr.data}'
-            
-            elif curr == self.last_node: 
-                ret_str += f'\nLast node: data = {curr.data}'
-                break
-
-            else: ret_str += f'\n Node: data = {curr.data}'
-
             curr = curr.next_node
+            if curr == None: return ret_str
+            if curr == self.head: return ret_str
+
+            ret_str += f'\n Node: data = {curr.data}'
 
         return ret_str
 
@@ -173,4 +174,6 @@ ll_doubly.add(6)
 
 print(ll_doubly.__repr__())
 
-ll_doubly.delete(idx=1)
+ll_doubly.delete_at(idx=0)
+
+ll_doubly.delete_val(data=10)
