@@ -87,25 +87,47 @@ class DoublyCircularLinkedList:
 
     def delete(self, idx):
 
-        if idx > self.__len__()-1:
-            raiseExceptions(IndexError('Index out of range Miti!'))
-
-        curr = self.head
-        position = 0
-
         if self.head==None: raiseExceptions('The list is empty')
+        if idx > self.__len__()-1: raise(IndexError('Index out of range Miti!'))
 
-        while position < idx - 1:
-            position += 1
-            curr = curr.next_node
-        
-        
-        # previous node -> delete idx -> next node
-        previous_node = curr
-        next_node = previous_node.next_node
 
-        previous_node.next_node = next_node
-        next_node.prev_node = previous_node
+        if self.__len__() == 2:
+            # if we only had head and last nodes
+            if idx == 0:
+                self.last_node = self.head
+                self.last_node.next_node = None
+                self.last_node.prev_node = None
+            # i have to rewrite it cause we don't want the head
+            # to be the last too
+            elif idx == 1:
+                self.head.next_node = None
+                self.head.prev_node = None
+                self.last_node = None
+
+        elif idx == self.__len__() - 1:
+            self.last_node = self.last_node.prev_node
+            self.last_node.next_node = self.head
+
+            self.head.prev_node = self.last_node
+            
+        else: 
+            curr = self.head
+
+            # idx = 1, position = 1
+            # idx = 2, position = 0
+            position = 0
+
+            while position < idx - 1:
+                position += 1
+                curr = curr.next_node
+            
+            
+            # previous node -> delete idx -> next_node
+            previous_node = curr
+            next_node = previous_node.next_node.next_node
+
+            previous_node.next_node = next_node
+            next_node.prev_node = previous_node
 
     def delete_val(self, data):
 
@@ -150,3 +172,5 @@ ll_doubly.add(5)
 ll_doubly.add(6)
 
 print(ll_doubly.__repr__())
+
+ll_doubly.delete(idx=1)
