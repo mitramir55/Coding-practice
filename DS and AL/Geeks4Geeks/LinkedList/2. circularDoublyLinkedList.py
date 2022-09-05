@@ -42,11 +42,14 @@ class DoublyCircularLinkedList:
             # new_head=new_node -> prev head
             previous_head = self.head
             previous_head.prev_node = new_node
+
+            # new_node props
             self.head = new_node
+            new_node.next_node = previous_head
 
             # last head ->  new_head
             self.last_node.next_node = new_node
-            self.head.prev_node = self.last_node
+            new_node.prev_node = self.last_node
 
     def __len__(self):
         curr = self.head
@@ -123,21 +126,18 @@ class DoublyCircularLinkedList:
         if self.head == None: return 'empty list.'
         ret_str = ''
 
-        curr = curr.next_node
-        print('m here')
-
         while curr:
 
-            if curr == self.head: ret_str += f'Head is {curr.data}'
-
-            curr = curr.next_node
-
-            print('one step ahead')
+            if curr == self.head: 
+                ret_str += f'Head node: date = {curr.data}'
+            
             elif curr == self.last_node: 
                 ret_str += f'\nLast node: data = {curr.data}'
                 break
 
             else: ret_str += f'\n Node: data = {curr.data}'
+
+            curr = curr.next_node
 
         return ret_str
 
