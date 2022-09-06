@@ -30,12 +30,21 @@ Q: How to make merge sort on linked lists efficient?
 
 REVIEW: items in need of future attention!
 
-Prime number finding: 
+--------------------------------
+Subject: Prime number finding: 
 
 It depends on whether we're looking at many big numbers or a few.
 
 A few: looking into a list seems to be a good option.
 Many: Maybe better to forget about the lists! cause not too many are available.
 
+--------------------------------
 
+Subject: comparing letters and words based on their order.
+
+Use ord(letter) -> starts from ord('a') = 97
+
+Example: find the maximum sum when comparing words with each other.
+
+max(x.lower().split(), key = lambda word: sum(ord(l) - 96 for l in word))
 
