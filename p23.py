@@ -13,3 +13,6 @@ max(max(eval( f'( {a} {op1} {b}) {op2} {c}') , eval(f' {a} {op1} ({b} {op2} {c} 
 
 
 max(max(eval(f'{a}{op1}({b}{op2}{c})'), eval(f'({a}{op1}{b}){op2}{c}')) for op1 in '+*' for op2 in '+*')
+
+import regex as re
+re.findall('[1-9]', '255')
