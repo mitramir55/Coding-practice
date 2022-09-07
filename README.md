@@ -48,3 +48,10 @@ Example: find the maximum sum when comparing words with each other.
 
 max(x.lower().split(), key = lambda word: sum(ord(l) - 96 for l in word))
 
+--------------------------------
+
+create an expression that can be interpreted into equation:
+
+example: given three numbers try to come up with an expression that can output the max
+
+max(max(eval(f'{a}{op1}({b}{op2}{c})'), eval(f'({a}{op1}{b}){op2}{c}')) for op1 in '+*' for op2 in '+*')
