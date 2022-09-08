@@ -61,6 +61,24 @@ alphabet_dict = {
     'M': 1000
 }
 
-for k in s:
-    alphabet_dict[k]
+from collections import Counter
+Counter({'red': 4, 'blue': 2}) 
+Counter('56255')
+
+powers_dict = {'2':0, '5':0}
+n = 100:
+
+for i < n:
+    num = i
+    while num % 2 == 0:
+        powers_dict['2'] += 1
+        num /= 2
+
+    while num % 5 == 0:
+        powers_dict['5'] += 1
+        num /= 5
+    i += 1
+
+    return min(powers_dict.values())
+
 
