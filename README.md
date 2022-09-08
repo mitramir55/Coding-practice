@@ -55,3 +55,12 @@ create an expression that can be interpreted into equation:
 example: given three numbers try to come up with an expression that can output the max
 
 max(max(eval(f'{a}{op1}({b}{op2}{c})'), eval(f'({a}{op1}{b}){op2}{c}')) for op1 in '+*' for op2 in '+*')
+
+
+
+--------------------------------
+
+To see if a number is '06':
+
+two ways: str(int(num)) == num
+or regex re.match(r'^0\d+', num) == None
