@@ -48,3 +48,19 @@ def validate(s):
     return s.count('.') == 3 and all(sec.isdigit() and re.match('^0\d+', sec)==None and -1 < int(sec) < 266 for sec in s.split('.'))
 
 validate('1.1.1.06')
+
+
+
+alphabet_dict = {
+    'I': 1,
+    'V': 5,
+    'X': 10,
+    'L': 50,
+    'C': 100,
+    'D': 500,
+    'M': 1000
+}
+
+for k in s:
+    alphabet_dict[k]
+
