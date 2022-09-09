@@ -1,4 +1,5 @@
 from distutils.log import error
+import itertools
 from logging import raiseExceptions
 
 
