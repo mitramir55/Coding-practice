@@ -70,3 +70,12 @@ or regex re.match(r'^0\d+', num) == None
 When you want to know whether an argument is a function: (RuplesJS #3: String EachChar)
 
 x(a) if callable(x) else ...
+
+--------------------------------
+
+Keep in mind: \w is alphanumberic characters! all letters + all numbers so:
+
+to find something like 5f and 6g you must say: re.match('\d[a-ZA-Z]+') not re.match('\d\w')
+
+--------------------------------
+
