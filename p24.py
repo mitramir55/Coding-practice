@@ -83,3 +83,11 @@ def twoSum(nums, target):
                 if i < j: 
                     if nums[i] + nums[j] == target: return [i, j]
 twoSum(nums, 6)
+
+
+def isValid(s: str) -> bool:
+    return True if not s.translate(str.maketrans("", "", '()[]{}')) else False
+
+isValid(s='[]()')
+
+"{{{{}}})"
