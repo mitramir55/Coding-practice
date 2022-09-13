@@ -91,3 +91,56 @@ def isValid(s: str) -> bool:
 isValid(s='[]()')
 
 "{{{{}}})"
+
+
+
+def isValid(s: str) -> bool:
+    if len(s) % 2 != 0:
+        return False
+    dict = {'(' : ')', '[' : ']', '{' : '}'}
+    stack = []
+    for i in s:
+        if i in dict.keys():
+            stack.append(i)
+        else:
+            if stack == []:
+                return False
+            a = stack.pop()
+            if i!= dict[a]:
+                return False
+    return stack == []
+
+
+s = '{(})'
+isValid(s)
+
+
+def is_valid_2(s):
+
+    par1 = {'{': 1, '}': -1, 'count': 0}
+    par2 = {'[': 1, ']': -1, 'count': 0}
+    par3 = {'(': 1, ')': -1, 'count': 0}
+
+
+    for k in s:
+
+        if k in par1:
+            par1['count'] += par1[k]
+            if par1['count'] < -1: return False
+
+        elif k in par2:
+            par2['count'] += par2[k]
+            if par2['count'] < -1: return False
+
+        elif k in par3:
+            par3['count'] += par3[k]
+            if par3['count'] < -1: return False
+
+    # "{{}"
+    if par1['count'] > 0 or par2['count'] > 0 or par3['count'] > 0:
+        return False
+
+    return True
+
+s = "([)]"
+is_valid_2(s)
