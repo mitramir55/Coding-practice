@@ -32,3 +32,34 @@ def is_sym(root):
 	if not root: return True
 	
 	return are_sym(root.left, root.right)
+
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        nums_dict = {}
+        for k in nums:
+            nums_dict[k] = nums_dict.get(k, 0) + 1
+            
+            
+        return [k for k, v in nums_dict.items() if v == 1][0]
+
+
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        curr = head
+        if not curr: return False
+        passed_vals = {curr.val: 0}
+        i = 1
+        curr = curr.next
+        
+        while curr:
+            if curr.next not in passed_vals: 
+                curr = curr.next
+                passed_vals[curr] = i
+                i += 1
+                
+            else: return True
+            
+        return False
+    
+    
