@@ -1,6 +1,9 @@
 
 
 
+from turtle import left
+
+
 def helper(start, end, nums, target):
     mid_idx = (end - start) // 2 + start
 
@@ -35,3 +38,5 @@ def find_in_sorted(nums, target):
             start = mid_idx + 1
 
     return start
+
+
