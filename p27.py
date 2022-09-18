@@ -62,4 +62,15 @@ class Solution:
             
         return False
     
-    
+
+def has_cycle(root):
+    slow = root
+    fast = root.next
+    # s, f
+    #  , s,   , f
+    #  ,  ,  s,  ,   ,   , f
+    #  ,  ,   , s,   ,   ,  ,  ,  , f 
+    # 1, 2 , 3, 4, 5, 6, 7, 8
+    while slow != fast:
+        slow = slow.next
+        fast = fast.next.next
