@@ -36,7 +36,7 @@ class Digraph:
 
         else:
             self.edges[node] = []
-        
+
     def add_edge(self, edge):
 
         src = edge.get_source()
@@ -77,7 +77,7 @@ class Graph(Digraph):
 
         Digraph.add_edge(self, edge)
 
-        reversed_edge = Edge(scr=edge.get_source(), dest=edge.get_dest())
+        reversed_edge = Edge(scr=edge.get_dest(), dest=edge.get_source())
         Digraph.add_edge(self, reversed_edge)
 
 def build_city_graph(graph_type):
