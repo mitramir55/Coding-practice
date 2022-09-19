@@ -34,3 +34,42 @@ def get_intersect(heada, headb):
         # they go on until the both hit null or
         # they go on until they reach the same node
     return a
+
+
+
+nums_dict = {3:4, 5: 10}
+sorted(nums_dict.items(), key = lambda x: x[1], reverse=True)[0][0]
+
+
+
+
+
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        
+        res, max_c = 0, 0
+        nums_dict = {}
+        for num in nums:
+            nums_dict[num] = nums_dict.get(num, 0) + 1
+            if max_c < nums_dict[num]: 
+                res = num
+                max_c = nums_dict[num]
+        
+        return res
+
+
+
+
+def get_majority(nums):
+
+    res, count = nums[0], 0
+    for num in nums:
+        if num == res:
+            count += 1
+        elif count == 0:
+            res = num
+        else: 
+            count -= 1
+    return res
+        
