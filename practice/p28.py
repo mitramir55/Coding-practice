@@ -72,4 +72,41 @@ def get_majority(nums):
         else: 
             count -= 1
     return res
-        
+
+
+class NodeList:
+    def __init__(self, val, next=None) -> None:
+        self.val = val
+        self.next = next
+
+
+def sort_ll(root1, root2):
+
+    head = res_ll = NodeList(val=0)
+
+    while root1 and root2:
+        if root1.val > root2.val:
+            res_ll.next = root1
+            root1 = root1.next
+        else: 
+            res_ll.next = root2
+            root2 = root2.next
+    
+    res_ll.next = root1 or root2
+    return head.next
+
+def find_idx(nums, target):
+    s, e = 0, len(nums) - 1
+
+    while s <= e:
+        mid = s + (e-s) // 2
+        mid_num = nums[mid]
+        if mid_num >= target:
+            e = mid_num - 1
+        else: 
+            s = mid_num + 1
+
+    return s
+
+
+find_idx(nums=[1, 2, 3, 4, 5, 6], target=5)
