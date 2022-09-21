@@ -110,3 +110,49 @@ def find_idx(nums, target):
 
 
 find_idx(nums=[1, 2, 3, 4, 5, 6], target=5)
+
+
+
+
+
+d = {3:5,5:6}
+len(d)
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        curr = head
+        i = 0
+        dict_ = {}
+        
+        while curr:
+            dict_[i] = curr.val
+            curr = curr.next
+            i += 1
+            
+        n = len(dict_)
+        for i in range(n):
+            if dict_[i] != dict_[n-i-1]: return False
+            
+        return True
+    
+
+
+def is_palindrom(head):
+    fast = head
+    slow = head
+
+    while fast and fast.next:
+        fast = fast.next.next
+        slow = slow.next
+
+    # we now have slow as the middle point
+    prev, curr = None, slow
+    while curr:
+        nxt = curr.next 
+        curr.next = prev
+        prev = curr
+        curr = nxt
+
+    root_l, root_r = head, prev
+    while root_r:
+        if root_l != root_r: return False
+    return True
