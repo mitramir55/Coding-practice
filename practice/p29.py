@@ -23,7 +23,6 @@ def get_len(root):
 
 
 def get_diameter(root):
-
     l_right = get_len(root)
     l_left = get_len(root)
 
@@ -34,3 +33,16 @@ def get_diameter(root):
         other_lefts = get_diameter(root.left)
 
     return max(l_right, l_left, other_rights, other_lefts)
+
+
+
+
+
+def get_diameter(root):
+    """
+    create an in order visit of the nodes 
+    """
+
+    if root:
+        return get_diameter(root.left) + get_diameter(root.right) + 1
+

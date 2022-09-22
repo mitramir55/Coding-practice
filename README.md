@@ -79,4 +79,4 @@ to find something like 5f and 6g you must say: re.match('\d[a-ZA-Z]+') not re.ma
 
 --------------------------------
 
-Take a look at this later: ![link](https://www.geeksforgeeks.org/length-of-longest-straight-path-from-a-given-binary-tree/)
+Take a look at this later, this is a question you thought you had to solve when seeing the longest path in binary tree question ![link](https://leetcode.com/problems/diameter-of-binary-tree/discuss/480877/543.-Diameter-of-Binary-Tree-and-124.-Binary-Tree-Maximum-Path-Sum), but it was different: ![link](https://www.geeksforgeeks.org/length-of-longest-straight-path-from-a-given-binary-tree/) -> look at the p29 file!!!
