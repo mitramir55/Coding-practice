@@ -27,3 +27,23 @@ class Solution:
             max_len = max(max_len, right_i - left_i + 1)
             
         return max_len
+
+
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+    
+    
+        chars_dict = {}
+        left_i, max_len = 0, 0
+        
+        for right_i, l in enumerate(s):
+            
+            if l in chars_dict and left_i <= chars_dict[l]:
+                left_i = chars_dict[l] + 1
+            else:
+                max_len = max(max_len, right_i - left_i + 1)
+                
+            chars_dict[l] = right_i
+            
+        return max_len
