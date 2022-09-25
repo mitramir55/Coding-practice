@@ -1,4 +1,8 @@
 
+import itertools
+from turtle import pos
+
+
 set_ = set([1,2,3])
 
 set_.add(1)
@@ -47,3 +51,33 @@ class Solution:
             chars_dict[l] = right_i
             
         return max_len
+
+
+a = [["5","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]]
+
+
+
+for i in zip(*a):
+    print(i)
+import itertools
+list(itertools.chain.from_iterable(a))
+
+
+def post_order(root):
+    res = []
+    res += post_order(root.left)
+    res += post_order(root.right)
+    res += [root.val]
+
+    return res
+
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+            res = []
+            if root:
+                res += [root.val]
+                res += self.preorderTraversal(root.left)
+                res += self.preorderTraversal(root.right)
+            return res
+
+
