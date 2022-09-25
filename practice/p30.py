@@ -98,3 +98,31 @@ def max_depth(root):
     if root:
         height = max(max_depth(root.right), max_depth(root.left)) + 1 
     return height
+
+
+
+def reverse_ll(head):
+    prev, curr = None, head
+    while curr:
+        nxt = curr.next
+        curr.next = prev
+        prev = curr
+        curr = nxt
+    return prev
+    
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        
+        if not head.next: return None
+                
+        curr = head2 = reverse_ll(head)
+        if n == 1: head2 = curr.next
+        else:
+            position = 1
+            while position < n-1:
+                position += 1
+                curr = curr.next
+            curr.next = curr.next.next
+        
+        
+        return reverse_ll(head2)
