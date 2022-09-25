@@ -80,4 +80,21 @@ class Solution:
                 res += self.preorderTraversal(root.right)
             return res
 
+def helper(root1, root2):
+    if not root1 and not root2: return True
+    if not root1 or not root2: return False
+    if root1.val == root2.val:
+        return helper(root1.left, root2.right) and helper(root1.right, root2.left)
+    return False
 
+def is_sym(root):
+    if not root: return True
+    if root: return helper(root.left, root.right)
+
+
+
+def max_depth(root):
+    height = 0
+    if root:
+        height = max(max_depth(root.right), max_depth(root.left)) + 1 
+    return height
