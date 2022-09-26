@@ -82,3 +82,26 @@ class Solution:
                 
         return True
 
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        all_lists_vals = []
+        for ll in lists:
+            while ll:
+                all_lists_vals.append(ll.val)
+                ll = ll.next
+                
+        sorted_list = sorted(all_lists_vals)
+        head = curr = ListNode(0)
+        for val in sorted_list:
+            curr.next = ListNode(val=val)
+            curr = curr.next
+            
+        return head.next
+    
