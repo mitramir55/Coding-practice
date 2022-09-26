@@ -1,6 +1,8 @@
 
 import itertools
-from turtle import pos
+from turtle import left, pos, right
+
+from DS and AL.6.0001.4. Merge_sort import merge_sort
 
 
 set_ = set([1,2,3])
@@ -126,3 +128,175 @@ class Solution:
         
         
         return reverse_ll(head2)
+
+
+class Solution:
+def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    
+    fast, slow = head, head
+
+    for _ in range(n): fast = fast.next
+    # list = [1] and n = 1 -> next will be None
+    if not fast: return head.next
+    while fast.next:
+        fast = fast.next
+        slow = slow.next
+    slow.next = slow.next.next
+    
+    return head
+
+
+
+
+
+
+
+
+
+
+    
+
+
+class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+        curr = head
+        all_vals = []
+        while curr:
+            all_vals.append(curr.val)
+            curr = curr.next
+        all_vals = sorted(all_vals)
+        
+        head = curr = ListNode(0)
+        for val in all_vals:
+            curr.next = ListNode(val=val)
+            curr = curr.next
+            
+        return head.next
+
+
+
+def compare_and_sort(left_arr, right_arr):
+
+    res = []
+
+    while left_arr and right_arr:
+
+        if left_arr[0] < right_arr[0]:
+            res.append(left_arr[0])
+            del left_arr[0]
+        else: 
+            res.append(right_arr[0])
+            del right_arr[0]
+
+    res += left_arr or right_arr
+    return res
+
+
+def merge_sort(arr):
+    if len(arr) < 2: return arr
+    mid_idx = len(arr) // 2
+
+    left_sorted = merge_sort(arr[:mid_idx])
+    right_sorted = merge_sort(arr[mid_idx:])
+
+    return compare_and_sort(left_sorted, right_sorted)
+    
+
+
+arr = [2, 5, 3, 6, 8, 10]
+
+merge_sort(arr)
+
+
+
+
+# 1 -> 2 -> 0 -> 5
+
+
+def compare_and_sort(left_root, right_root):
+
+    head = res_ll = ListNode(0)
+
+    while left_root and right_root:
+
+        if right_root.val < left_root.val:
+            res_ll.next = right_root.val
+            right_root = right_root.next
+        else:
+            res_ll.next = left_root.val
+            left_root = left_root.next
+
+
+    res_ll.next = left_root.next or right_root.next
+
+    return head.next
+
+
+
+def merge_sort_ll(head):
+
+    fast, slow = head, head
+    while fast.next:
+        fast = fast.next.next
+        slow = slow.next
+
+    right_sorted = merge_sort(slow)
+
+    slow.next = None
+    left_sorted = merge_sort(head)
+
+    return compare_and_sort(left_sorted, right_sorted)
+    
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+def get_mid_node(head):
+    # because we want the one before the middle
+    # we start fast at head.next
+    slow, fast = head, head.next
+    while fast and fast.next:
+        fast = fast.next.next
+        slow = slow.next
+    
+    return slow
+
+def compare_and_sort(right_root, left_root):
+
+    head = curr = ListNode(0)
+
+    while left_root and right_root:
+
+        if right_root.val < left_root.val:
+            curr.next = right_root
+            right_root = right_root.next
+        else:
+            curr.next = left_root
+            left_root = left_root.next
+        curr = curr.next
+        
+    if right_root:
+        curr.next = right_root
+    if left_root:
+        curr.next = left_root
+    
+    return head.next
+
+
+class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next: return head
+        
+        head2 = get_mid_node(head)
+        right_sorted = self.sortList(head2.next)
+
+        head2.next = None
+        left_sorted = self.sortList(head)
+
+        return compare_and_sort(right_sorted, left_sorted)
+

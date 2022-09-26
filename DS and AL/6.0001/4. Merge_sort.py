@@ -42,3 +42,4 @@ def merge_sort(arr):
 arr = [2, 5, 3, 6, 8, 10]
 
 merge_sort(arr)
+
