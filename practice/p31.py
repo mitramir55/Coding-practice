@@ -105,3 +105,6 @@ class Solution:
             
         return head.next
     
+
+print(" this is coooool \"\"")
+# studied 2 series of Java
