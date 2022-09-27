@@ -108,3 +108,26 @@ class Solution:
 
 print(" this is coooool \"\"")
 # studied 2 series of Java
+
+import math
+def max_profit(nums):
+    max_profit, min_start = 0, nums[0]
+
+    for num in nums[1:]:
+
+        min_start = min(min_start, num)
+        temp_profit = num - min_start
+        max_profit = max(temp_profit, max_profit)
+
+    return max_profit
+
+
+def is_cycle(root):
+    if root == None: return True
+    slow, fast = root, root.next
+
+    while slow != fast:
+        if not fast or not fast.next: break
+        fast = fast.next.next
+        slow = slow.next
+    return  fast == slow
