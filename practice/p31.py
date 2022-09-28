@@ -131,3 +131,27 @@ def is_cycle(root):
         fast = fast.next.next
         slow = slow.next
     return  fast == slow
+
+
+
+def find_intersection(headA, headB):
+    root1, root2 = headA, headB
+
+    while root1 != root2:
+        root1 = root1.next if root1 else headB
+        root2 = root2.next if root2 else headA
+
+    return root1 
+
+def find_majority(nums):
+    count, prev = 0, nums[0]
+    for num in nums:
+        if num==prev:
+            count += 1
+        
+        elif count == 0 and num != prev:
+            prev = num
+        else:
+            count -= 1
+
+    return num
