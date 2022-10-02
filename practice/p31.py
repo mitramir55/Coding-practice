@@ -155,3 +155,38 @@ def find_majority(nums):
             count -= 1
 
     return num
+
+import regex as re
+s = "3[a2[c]]"
+s = "3[a]2[bc]"
+
+def replace_pattern(patt):
+
+    times = int(re.findall('\d', patt)[0])
+    letters = re.findall("\[(\w*)\]", patt)[0]
+    return times * letters
+
+
+found_spans = re.findall("\d\[\w*\]", s)
+found_spans
+
+
+print('s = ', s)
+
+
+while '[' in s:
+    found_spans = re.findall("\d\[\w*\]", s)
+    for span in found_spans:
+        replacement = replace_pattern(span)
+        s = s.replace(span, replacement)
+
+
+
+
+re.sub('(2[c])', 'cc', s)
+
+patt = "2[c]"
+times = int(re.findall('\d', patt)[0])
+letters = re.findall("\[(\w*)\]", patt)
+times
+letters
