@@ -17,3 +17,27 @@ for i in range(len(s)):
 
 res
 ord('a')
+
+
+{1,2,3}
+
+
+class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+        stack = []
+        n = len(s)
+        visited = set()
+
+
+        letters_dict = {}
+        for i in range(n): letters_dict[s[i]] = i
+
+        for i in range(n):
+            if s[i] not in visited:
+                while stack and stack[-1] > s[i] and letters_dict[stack[-1]] > i:
+                    visited.remove(stack.pop()) 
+
+                stack.append(s[i])
+                visited.add(s[i])
+
+        return "".join(stack)
