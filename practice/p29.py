@@ -115,3 +115,36 @@ def lengthOfLongestSubstring(s: str):
         ret_str += s
     return ret_str
 
+
+
+def find_intersection_start(root):
+    # d1 = head to start
+    # d2 = start to intersection
+    # d3 = intersection to start
+    # d_slow = d1 + d2
+    # d_fast = d1 + d2 + d3 + d2
+    # 2 * d_slow = d_fast
+    # 2 * (d1 + d2) = d1 + 2 * d2 + d3 -> d1 = d3
+
+    if not root: return False
+
+    slow, fast = root, root
+    while slow != fast:
+        if fast and fast.next: return False
+
+        slow = slow.next
+        fast = fast.next.next
+    
+    node = root
+    while node != slow:
+        slow = slow.next
+        node = node.next
+
+    return node
+
+# n = 2
+# '()()', '(())'
+
+def generate_pars(n):
+
+    return 
