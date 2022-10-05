@@ -124,34 +124,41 @@ def are_permutations(s1:str, s2:str):
         if characters_indices[ord(char)] < 0: return False
     return True
 
+
 def permutation_seen(s1:str, s2:str):
     """
     s1: string with the letters we're searching for
     s2: main string we're searching in
     """
-
+    
     # find index of letters of s1 in s2
     all_indices = []
-    for k in s1:
-        try:
-            all_indices.append(s2.index(k))
-        except: return False
+    s1_set = set(s1)
+
+    for i in range(len(s2)):
+        if s2[i] in s1_set: all_indices.append(i)
+
 
     # [1,2,3,6,7] -> [[1,2,3], [6,7]]
     all_indices_stacks = []
     indices_stack = []
-    print('all_indices = ', all_indices)
-    while all_indices:
+
+    while all_indices or indices_stack:
+        print('indices_stack = ', indices_stack)
 
         # empty indices_stack
         if not indices_stack: 
             indices_stack.append(all_indices.pop())
-            print('initial indices_stack = ', indices_stack)
+
+        elif not all_indices:
+            all_indices_stacks.append(indices_stack)
+            indices_stack = []
 
         # not empty indices_stack and checking if they're in a range
-        elif indices_stack[-1] - 1 == all_indices[-1]:
+        elif indices_stack[-1] == all_indices[-1] + 1:
             indices_stack.append(all_indices.pop())
-            print('after adding indices_stack = ', indices_stack)
+
+        # not empty indices stack
         else:
             all_indices_stacks.append(indices_stack)
             indices_stack = []
@@ -159,13 +166,43 @@ def permutation_seen(s1:str, s2:str):
     print('all_indices_stacks = ', all_indices_stacks)
 
     for stack in all_indices_stacks:
-        string_ = s2[stack[0]:stack[-1]+1]
 
-        if are_permutations(s1, string_): return True
+        if len(stack) > len(s1):
+            s1_len = len(s1)
+            for i in range(0, len(indices) - s1_len + 1):
+                
+                stack_i = stack[i:i+s1_len]
+                print('stack is ', stack_i)
+                string_ = s2[stack_i[-1]:stack_i[0]+1]
+
+                print('string_ = ', string_)
+                if are_permutations(s1, string_): return True
+
+        else:
+            string_ = s2[stack[-1]:stack[0]+1]
+
+            print('string_ = ', string_)
+            if are_permutations(s1, string_): return True
         
     return False
 
 
-s1 = "ab"
-s2 = "eidbaooo"
+s1 = "adc"
+s2 = "dcda"
+
+
 permutation_seen(s1, s2)
+
+
+
+
+s1_list = list(s1)
+idx = s1_list.index('a')
+del s1[]
+
+
+indices = [6, 5, 4, 3, 2, 1, 0]
+s1_len = len(s1)
+for i in range(0, len(indices) - s1_len):
+    print(i)
+    print(indices[i:i+3])
