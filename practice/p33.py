@@ -70,3 +70,18 @@ def is_palindrom_permutation(s:str):
     return len([1 for (k, v) in chars_map.items() if v % 2 == 1]) <= 1
 
 is_palindrom_permutation(s = 'tact coea')
+
+
+
+
+from functools import cache
+@cache
+def partition(s:str):
+    if not s: return [[]]
+    ans = []
+    for i in range(1, len(s)+1):
+        if s[:i] == s[:i][::-1]:
+            for suffix in partition(s[i:]):
+                ans.append([s[:i]] + suffix)
+    
+    return ans
