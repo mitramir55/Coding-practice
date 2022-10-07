@@ -206,3 +206,51 @@ s1_len = len(s1)
 for i in range(0, len(indices) - s1_len):
     print(i)
     print(indices[i:i+3])
+
+
+
+
+def are_permutations(s1:str, s2:str):
+
+    char_arr = [0] * 128
+    for letter in s1:
+        idx = ord(letter)
+        char_arr[idx] += 1
+    
+    for letter in s2:
+        idx = ord(letter)
+        char_arr[idx] -= 1
+        if char_arr[idx] < 0: return False
+
+    return True
+
+
+
+def has_permutation(s1:str, s2:str):
+
+    s1_len = len(s1)
+    for i in range(0, len(s2) - s1_len + 1):
+        if are_permutations(s1, s2[i: i+s1_len]): return True
+    else: False
+    
+has_permutation(s1='abc', s2 = 'babc')
+
+
+from collections import Counter
+Counter('abdddc')
+
+s = "Mr    John Smith   "
+
+import regex as re
+
+re.sub(' +', "%20", s)
+
+s = s.strip()
+ 
+# Replace All space (unicode is \\s) to %20
+s = s.replace(' ', "%20")
+ 
+# Display the result
+print(s)
+
+

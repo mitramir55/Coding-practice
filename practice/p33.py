@@ -58,3 +58,15 @@ def find_anagram(s1, s2):
     return all_indices
 
 
+def is_palindrom_permutation(s:str):
+    chars_map = {}
+    for k in s.lower():
+        if k != ' ': 
+            chars_map[k] = chars_map.get(k, 0) + 1
+
+    # pythonic: 
+    # from collections import Counter
+    # chars_map = Counter(s)
+    return len([1 for (k, v) in chars_map.items() if v % 2 == 1]) <= 1
+
+is_palindrom_permutation(s = 'tact coea')
