@@ -178,15 +178,34 @@ def all_palindroms(s:str) -> list[str]:
             print('s[:i] = ', s[:i])
             res_list.append(s[:i])
 
-        for j in range(i+1, len(s)+1):
-            print('j = ', j)
-            print('s[i:j] = ', s[i:j])
-            palindromes = all_palindroms(s[i:j])
-            if palindromes:
-                print('palindromes = ', palindromes)
-                for suffix in palindromes:
-                    res_list.append(suffix)
+            for j in range(1, len(s)+1):
+                print('j = ', j)
+                print('s[i:j] = ', s[i:j])
+                palindromes = all_palindroms(s[i:j])
+                if palindromes:
+                    print('palindromes = ', palindromes)
+                    for suffix in palindromes:
+                        res_list.append(suffix)
 
-    return set(res_list)
+    return res_list
 
 all_palindroms('abc')
+
+
+from functools import cache
+
+@cache
+def palindrom_substrings_2(s:str) -> list[list]:
+    ret_list = []
+    if not s: return []
+
+    for i in range(1, len(s) + 1):
+        if s[:i] == s[:i][::-1]:
+            ret_list .append(s[:i])
+
+            for suffix in palindrom_substrings_2(s[i:]):
+                ret_list.append(suffix)
+    return ret_list
+
+
+palindrom_substrings_2('aaa')
