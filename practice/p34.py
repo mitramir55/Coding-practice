@@ -1,4 +1,5 @@
 from re import sub
+import string
 
 
 def is_one_edit_away(s1:str, s2:str) -> bool:
@@ -147,3 +148,45 @@ def is_one_edit_away_2(s1:str, s2:str):
 
 
 is_one_edit_away_2("cat", "matt")
+
+
+
+
+
+
+
+
+def is_palindrom(s):
+    return s == s[::-1]
+
+from functools import cache
+
+
+@cache
+def all_palindroms(s:str) -> list[str]:
+    """
+    "aab" -> ["a", "b", "aa"]
+    """
+    res_list = []
+
+    if s=='': return 
+
+    print()
+    for i in range(1, len(s)+1):
+        print('i = ', i)
+        if is_palindrom(s[:i]):
+            print('s[:i] = ', s[:i])
+            res_list.append(s[:i])
+
+        for j in range(i+1, len(s)+1):
+            print('j = ', j)
+            print('s[i:j] = ', s[i:j])
+            palindromes = all_palindroms(s[i:j])
+            if palindromes:
+                print('palindromes = ', palindromes)
+                for suffix in palindromes:
+                    res_list.append(suffix)
+
+    return set(res_list)
+
+all_palindroms('abc')
