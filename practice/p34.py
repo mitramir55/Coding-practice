@@ -209,3 +209,157 @@ def palindrom_substrings_2(s:str) -> list[list]:
 
 
 palindrom_substrings_2('aaa')
+
+
+def palindrome_parts(s:str) ->list[list[str]]:
+    """
+    "aab" -> [[a, a, b], [aa, b]]
+    """
+    stack = []
+    res = []
+    def dfs(i:int):
+        """
+        i : index of where we're at when partitioning the string
+        """
+        print()
+        print('i = ', i)
+        if i == len(s):
+            print('finished stack = ', stack.copy())
+            res.append(stack.copy())
+            return
+
+        for j in range(i+1, len(s)+1):
+            print('j = ', j)
+            if s[i:j] == s[i:j][::-1]:
+                print('stack before append = ', stack)
+
+                stack.append(s[i:j])
+                print('stack after append = ', stack)
+
+                dfs(j) # j = len(s)
+                print('stack after dfs = ', stack)
+
+                stack.pop()
+                print('stack after pop = ', stack)
+    dfs(0)
+    return res
+
+
+palindrome_parts('aab')
+
+
+
+
+
+
+# count palindromes
+
+def is_palindrom(s):
+    return s == s[::-1]
+
+
+def palindrome_count(s:str) -> int:
+
+    count = 0
+    for i in range(len(s)):
+        for j in range(len(s), i, -1):
+            if is_palindrom(s[i:j]): count += 1
+    return count
+
+palindrome_count('aab')
+
+'aab'.pop()
+
+def compressed_form(s):
+    letter, res, init_s = '', '', s
+    count, ones_c = 0, 0
+
+    for _ in range(len(init_s)+1):
+        print()
+        if not s:
+            res = str(count) + letter + res
+        elif not letter:
+            letter = s[-1]
+            count += 1
+        else:
+            if letter == s[-1]:
+                count +=1
+                print('count = ', count)
+            else:
+                res = str(count) + letter + res
+                if count == 1: ones_c += 1
+                count, letter = 1, s[-1]
+        
+        s = s[:-1]
+        print('s = ', s)
+        print('count = ', count)
+    
+    return init_s if ones_c == len(init_s) else res
+from time import time
+
+start = time()
+compressed_form('aabb')
+end = time()
+
+print(start - end)
+
+
+def strCompress(string):
+    compressed = []
+    lastchar = "" 
+    charcount = 0
+    for char in string:
+        if char == lastchar:
+            charcount += 1
+        else:
+            if lastchar != "":
+                compressed.append(lastchar+str(charcount))
+            lastchar = char
+            charcount = 1
+    compressed.append(lastchar+str(charcount)) #append the last character
+    compressedStr = ''.join(compressed)  # join the list into a string
+    if len(compressedStr)<len(string):
+        return compressedStr
+    else:
+        return string
+        
+
+start = time()
+strCompress('aabb')
+end = time()
+
+print(start - end)
+
+n = 3
+nums = [1, 2, 3, 4, 5]
+nums_ = nums[-n:]
+nums_.reverse()
+nums_ + nums[n+1:]
+
+
+
+class Solution:
+    
+    def countSubstrings(self, s: str) -> int:
+        if not s: return 0
+
+        def count_palindromes(r, l)->int:
+            c = 0
+            while l >= 0 and r < len(s):
+                if s[l] == s[r]: 
+                    c += 1
+                    l, r = l-1, r+1
+                else: break
+            return c
+
+        count = 0
+        for i in range(len(s)):
+            # odd lengthed strings
+            l, r = i, i
+            count += count_palindromes(r, l)
+
+            # even lengthed strings
+            l, r = i, i + 1
+            count += count_palindromes(r, l)
+
+        return count
