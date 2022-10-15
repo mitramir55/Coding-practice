@@ -363,3 +363,62 @@ class Solution:
             count += count_palindromes(r, l)
 
         return count
+
+
+
+matrix =  [[1, 2, 3, 4, 5],
+        [1, 2, 3, 4, 5],
+        [1, 2, 3, 4, 5], 
+        [1, 2, 3, 4, 5],
+        [1, 2, 3, 4, 5]]
+
+import numpy as np
+np.rot90(matrix, -1)
+matrix
+
+
+
+def rotate_90(matrix):
+
+    n = len(matrix)
+
+    matrix_2 = [[0 for i in range(n)] for i in range(n)]
+
+    for i in range(n):
+        for j in range(n):
+
+            matrix_2[j][n - 1 - i] = matrix[i][j]
+
+    return matrix_2
+rotate_90(matrix)
+
+matrix = np.rot90(matrix, -1)
+
+
+matrix
+
+
+
+matrix =  [[0, 10, 20, 30, 40],
+            [1, 100, 120, 130, 140],
+            [1, 2, 3, 4, 5], 
+            [1, 2, 3, 4, 5],
+            [1, 2, 3, 4, 5]]
+
+def rot(matrix: list[list]):
+    for i in range(len(matrix)):
+        for j in range(i, len(matrix)):
+            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+
+
+
+
+
+    n = len(matrix)
+    for i in range(len(matrix)):
+        for j in range(len(matrix)//2):
+            matrix[i][j], matrix[i][n - 1 - j] = matrix[i][n - 1 - j], matrix[i][j]
+
+for row in range(len(matrix)):
+    print(matrix[row])
+type(matrix)
