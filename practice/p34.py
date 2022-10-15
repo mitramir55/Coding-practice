@@ -399,12 +399,6 @@ matrix
 
 
 
-matrix =  [[0, 10, 20, 30, 40],
-            [1, 100, 120, 130, 140],
-            [1, 2, 3, 4, 5], 
-            [1, 2, 3, 4, 5],
-            [1, 2, 3, 4, 5]]
-
 def rot(matrix: list[list]):
     for i in range(len(matrix)):
         for j in range(i, len(matrix)):
@@ -419,6 +413,62 @@ def rot(matrix: list[list]):
         for j in range(len(matrix)//2):
             matrix[i][j], matrix[i][n - 1 - j] = matrix[i][n - 1 - j], matrix[i][j]
 
+
+
+
+type(matrix)
+
+
+matrix =  [[0, 10, 20, 30, 40],
+            [1, 100, 120, 130, 140],
+            [1, 2, 3, 4, 5], 
+            [1, 2, 3, 4, 5],
+            [1, 2, 3, 4, 5]]
+            
+def set_zero(matrix:list[list]):
+    n = len(matrix)
+    zero_cols = []
+
+    for i in range(n):
+        for j in range(n):
+
+            if matrix[i][j] == 0:
+                zero_cols.append(j)
+                matrix[i] = [0] * n
+                break
+
+    for j in zero_cols:
+        for i in range(n):
+            matrix[i][j] = 0
+
+
 for row in range(len(matrix)):
     print(matrix[row])
-type(matrix)
+
+
+s1 = "erbottlewat"
+s2 = "waterbottle"
+
+def is_rotation(s1, s2):
+    # is s2 a rotation of s1
+    l = 0
+
+    # l = 3
+    while l < len(s1):
+        if s1[0] == s2[l]:
+            if s2[l:] + s2[:l] == s1:
+                return True
+        l += 1
+    return False
+
+
+is_rotation(s1, s2)
+
+def is_rotation(s1:str, s2:str)->bool:
+
+    if len(s1) == len(s2) != 0:
+        if s1 in s2 * 2:
+            return True
+    return False
+
+
