@@ -472,3 +472,43 @@ def is_rotation(s1:str, s2:str)->bool:
     return False
 
 
+
+
+
+
+
+
+from typing import Optional
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+
+        # define two pointers
+        # fast goes n steps at a time to read the end
+        # slow will be the one before the nth from the end
+        # slow_temp is the one at nth from the end
+        slow_temp, fast = head, head
+
+        while fast:
+            slow_temp = slow_temp.next
+            for _ in range(n):
+                try:
+                    fast = fast.next
+                except:
+                    fast = None
+                    break
+
+            # slow will be the node before the one that is n steps from the
+            # last node
+            if fast:
+                slow = slow_temp
+        
+        slow.next = slow.next.next
+
+        return head
