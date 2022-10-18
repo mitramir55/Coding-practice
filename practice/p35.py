@@ -39,13 +39,21 @@ def generate_pars(n:int) -> list:
     def generate(open, close):
 
         if open == close == n:
+            print('finished! : ', "".join(stack))
+            print()
             all_pars.append("".join(stack))
+
+
         if open < n:
             stack.append("(")
+            print('Opening: ', stack)
+
             generate(open + 1, close)
             stack.pop()
+
         if close < open:
             stack.append(")")
+            print('Closing: ', stack)
             generate(open, close + 1)
             stack.pop()
     generate(open, close)
@@ -54,3 +62,37 @@ def generate_pars(n:int) -> list:
 
 
 generate_pars(3)
+
+
+
+import numpy as np
+np.random.randn(20, 3)
+
+
+
+
+def generateParenthesis(n: int):
+    
+    stack = []
+    res = []
+
+    def generate(open, closed):
+
+        if n == open == closed:
+            res.append("".join(stack))
+            return 
+
+        if open < n:
+            stack.append('(')
+            generate(open+1, closed)
+            stack.pop()
+        if closed < open:
+            stack.append(')')
+            generate(open, closed+1)
+            stack.pop()
+
+    generate(open=0, closed=0)
+    
+    return res
+
+
