@@ -199,3 +199,24 @@ def is_palindrom(head: Optional[ListNode]) -> bool:
         if not curr.val == stack.pop(): return False
         curr = curr.next
     return True
+
+
+from typing import Optional, Union
+class ListNode:
+    def __init__(self, val, next) -> None:
+        self.val = val
+        self.next = next
+
+def get_intersection(head1: Optional[ListNode], head2: Optional[ListNode]) -> Union[int, Optional[ListNode]]:
+
+    curr1, curr2 = head1, head2
+
+    while curr1 != curr2:
+        if not curr1: curr1 = head2
+        if not curr2: curr2 = head1
+        curr1 = curr1.next
+        curr2 = curr2.next
+    
+    # if one of them is not null then they are equals and have an intersection
+    if not curr1: return curr1
+    else: return -1
