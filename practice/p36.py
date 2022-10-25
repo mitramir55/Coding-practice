@@ -1,3 +1,4 @@
+from collections import defaultdict, deque
 import heapq
 
 
@@ -76,3 +77,50 @@ class DinnerPlates:
 
         # otherwise, return -1 because we can't pop any plate
         return -1
+
+
+
+from typing import Optional
+from collections import defaultdict, deque
+
+
+def breadth_first_search(edges: list[list], source: int, destination: int, n: int):
+
+    q = deque([source])
+    seen = set([source])
+    dictionary = defaultdict(list)
+    for s, d in edges:
+        dictionary[s].append(d)
+        dictionary[d].append(s)
+
+    while q:
+        node = q.popleft()
+        if node == destination:
+            return True
+        else:
+            for dest in dictionary[node]:
+                if dest not in seen:
+                    seen.add(seen)
+                    q.append(dest)
+
+    return False
+
+
+def deapth_first_search(source, destination, edges, n):
+
+    neighbors = defaultdict(list)
+    for s, d in edges:
+        neighbors[s].append(d)
+        neighbors[d].append(s)
+
+    seen = set()
+    def dfs(node):
+        if node == destination: return True
+        if node in seen: return False
+
+        seen.add(node)
+        for neighbor in neighbors[node]:
+            if dfs(neighbor): return True
+        return False
+    return dfs(source)
+
