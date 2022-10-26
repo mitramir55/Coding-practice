@@ -124,3 +124,78 @@ def deapth_first_search(source, destination, edges, n):
         return False
     return dfs(source)
 
+
+
+
+
+nums = [-10,-3,0,5,9]
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def sortedArrayToBST(nums: list[int]) -> Optional[TreeNode]:
+
+    if not nums: return None
+    mid_idx = len(nums) // 2
+
+    root = TreeNode(nums[mid_idx])
+    root.left = sortedArrayToBST(nums[:mid_idx])
+    root.right = sortedArrayToBST(nums[mid_idx:])
+
+    return root
+
+def sortedArrayToBST(nums: list[int]) -> Optional[TreeNode]:
+
+    def helper(l, r):
+        if l > r:
+            return None
+        mid_idx = (l - r) // 2 + l
+        
+        root = TreeNode(val=nums[mid_idx])
+        root.left = helper(l, mid_idx - 1)
+        root.right = helper(mid_idx + 1, l)
+        return root
+
+    return helper(0, len(nums) - 1)
+
+
+
+
+def level_order_traversal(root: Optional[TreeNode]) -> list[list[int]]:
+
+    ret_list = []
+    level_nodes = [root]
+
+    while level_nodes and root:
+        curr_level_vals = []
+        next_level_nodes = []
+
+        for node in level_nodes:
+            curr_level_vals.append(node.val)
+            if node.left:
+                next_level_nodes.append(node.left)
+            if node.right:
+                next_level_nodes.append(node.right)
+
+        ret_list.append(curr_level_vals)
+        level_nodes = next_level_nodes
+    return ret_list
+
+
+
+
+def level_order_traversal(root: Optional[TreeNode]) -> list[list[int]]:
+
+    level_nodes, ret_list = [root], []
+
+    while root and level_nodes:
+        ret_list.append([node.val for node in level_nodes])
+        left_right_pairs = [(node.left, node.right) for node in level_nodes]
+        level_nodes = [leaf for pair in left_right_pairs for leaf in pair if leaf]
+
+    return ret_list
+
+[leaf for pair in pairs for leaf in pair]
