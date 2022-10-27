@@ -199,3 +199,36 @@ def level_order_traversal(root: Optional[TreeNode]) -> list[list[int]]:
     return ret_list
 
 [leaf for pair in pairs for leaf in pair]
+
+
+
+
+
+
+
+
+
+
+
+from collections import deque
+from typing import Optional
+
+
+def depth_first_search(source: int, destination:int, edges:list[tuple[int]]) -> bool:
+
+    neighbors = defaultdict(list)
+    for a, b in edges:
+        neighbors[a].append(b)
+        neighbors[b].append(a)
+
+    seen = set()
+    def dfs(node):
+        if node == destination: return True
+        if node in seen: return False
+        seen.add(node)
+
+        for neighbor in neighbors[node]:
+            if dfs(neighbor): return True
+        return False
+    
+    return dfs(source)
