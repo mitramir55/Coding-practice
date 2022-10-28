@@ -232,3 +232,29 @@ def depth_first_search(source: int, destination:int, edges:list[tuple[int]]) -> 
         return False
     
     return dfs(source)
+
+
+
+
+
+import math
+class TreeNode:
+    def __init__(self, val, right=None, left=None):
+        self.val = val
+        self.right = right
+        self.left = left
+
+def is_binary_search_tree(root: Optional[TreeNode]):
+
+    r_bound, l_bound = math.inf, - math.inf
+
+    def is_BST(node, r_bound, l_bound):
+
+        if not node: return True
+        if not l_bound < node.val < r_bound: return False
+
+        is_BST(node.left, l_bound=l_bound, r_bound=node.val)
+        is_BST(node.right, l_bound=node.val, r_bound=r_bound)
+        
+
+    return is_BST(root, r_bound, l_bound)
