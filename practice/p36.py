@@ -258,3 +258,30 @@ def is_binary_search_tree(root: Optional[TreeNode]):
         
 
     return is_BST(root, r_bound, l_bound)
+
+
+
+
+
+
+
+from typing import Optional
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+# binary search tree next node search
+
+def binary_search(root: Optional[TreeNode], node: Optional[TreeNode]):
+
+    successor = None
+
+    while root:
+        if node.val < root.val:
+            successor = root
+            root = root.left
+        else:
+            root = root.right
+    return successor
