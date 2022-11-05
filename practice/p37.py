@@ -56,3 +56,31 @@ def hasPathSum(root: TreeNode, target_num: int):
         return helper(r.left, sum_) or helper(r.right, sum_)
         
     return helper(root, sum_=0)
+
+
+def path_sum(root, target):
+
+    cnt = 0
+    dfs(root)
+
+
+    def dfs(node):
+
+        if not node: return None
+
+        test(node)
+        dfs(node.right)
+        dfs(node.left)
+
+    def test(node, target):
+
+        if target == node.val:
+            cnt += 1
+        if not node or target < 0 or target < node.val: return None
+        test(node.left, target - node.val)
+        test(node.right, target - node.val)
+
+
+
+
+    return cnt
