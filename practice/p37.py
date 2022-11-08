@@ -84,3 +84,14 @@ def path_sum(root, target):
 
 
     return cnt
+
+
+def count_ways(n: int, m:int):
+
+    row = [1] * n
+    for i in range(m-1):
+        new_row = [1] * n
+        for j in range(n-2, -1, -1):
+            new_row[j] = row[j] + new_row[j+1]
+        row = new_row
+    return row[0]
