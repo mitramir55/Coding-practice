@@ -95,3 +95,33 @@ def count_ways(n: int, m:int):
             new_row[j] = row[j] + new_row[j+1]
         row = new_row
     return row[0]
+
+
+
+
+def tribunatchi(n: int)-> int:
+
+    three_nums = [0, 1, 1]
+    for i in range(3, n+1):
+        three_nums[i%3] = sum(three_nums)
+
+    return three_nums[n%3]
+
+
+a = [0, 1, 1, 0]
+
+[1 for i in a if i==0 else 0]
+
+
+
+[0,0,0,0], 0
+[0,1,0,0], 1 
+[0,0,0,0], 2 
+[0,0,1,0], 3
+[0,0,0,0], 4
+
+
+[0,0,0,0,0], 0
+[0,0,0,0,1], 1 
+[0,0,0,1,0], 2
+[0,0,1,0,0], 3
