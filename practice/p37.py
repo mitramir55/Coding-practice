@@ -257,3 +257,83 @@ def permute(nums):
 
 
 permute(nums=[1,2,3,4])
+
+
+def permute(nums):
+    res = []
+    if len(nums) == 1:
+        print(f'reached the end: nums = {nums[:]}')
+        return [nums[:]]
+    for _ in range(len(nums)):
+        n = nums.pop(0)
+        print('popping ', n)
+        perms = permute(nums)
+        for perm in perms:
+            perm.append(n)
+        
+        print(f'extending: nums = {perms}')
+        res.extend(perms)
+        nums.append(n)
+        print()
+    return res
+
+permute([1,2,3,4])
+
+
+
+
+def find_subsets(nums):
+
+    res = []
+    subset = []
+
+    def dfs(i):
+        if i == len(nums):
+            res.append(subset[:])
+            
+        subset.append(nums[i])
+        dfs(i+1)
+        subset.pop()
+        dfs(i+1)
+
+    dfs(0)
+    return res
+
+
+set([ [1,2,3], [1,2,3]])
+
+
+
+from collections import defaultdict
+def unique_permutations(nums):
+
+    nums_count = defaultdict(int)
+    for num in nums: nums_count[num] = nums_count.get(num, 0) + 1
+    print(nums_count)
+
+    perm = []
+    res = []
+
+    def dfs():
+        if len(perm) == len(nums): 
+            res.append(perm[:])
+            return
+
+        for num in nums_count:
+            if nums_count[num] > 0: 
+
+                perm.append(num)
+
+                # after decreasing the value by one, we increase it so 
+                # for the next number in the nums, we will have the same
+                # distribution
+                nums_count[num] -= 1
+                dfs()
+                nums_count[num] += 1
+
+                perm.pop()
+    dfs()
+    return res
+
+
+unique_permutations([1, 1, 3])
