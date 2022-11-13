@@ -337,3 +337,86 @@ def unique_permutations(nums):
 
 
 unique_permutations([1, 1, 3])
+
+
+
+
+def create_target_2(nums, target):
+
+    res, stack = [], []
+    sum_ = 0
+
+    def dfs(sum_):
+        if sum_ == target:
+            res.append(stack[:])
+        for num in nums:
+            while sum_ < target:
+                sum_ += num
+                stack.append(num)
+                dfs(sum_)
+                sum_ -= num
+                stack.pop()
+
+    dfs(sum_)
+    return stack
+
+
+create_target([1, 2, 5], target=5)
+
+
+
+
+
+
+
+
+
+
+
+
+def make_target(coins, target):
+    coins = sorted(coins, reverse=True)
+    coins_set = set(coins)
+    sum_, temp_sum = 0, 0
+    res, stack = [], []
+    
+
+    for i in coins:
+        if i > target:
+            continue
+
+        if sum_ == target: 
+            res.append(stack[:])
+            print("sum_ == target and stack is ", stack)
+            stack = []
+            sum_ = 0
+        
+        while temp_sum < target:
+            sum_ = temp_sum
+            stack.append(i)
+            temp_sum += i
+            if target - temp_sum in coins_set:
+                sum_ = target
+                stack.append(target - temp_sum)
+                break
+            elif temp_sum > target:
+                sum_ = 0
+                stack = []
+                break
+
+    return res[0]
+
+make_target(coins=[4, 1], target=9)
+
+
+
+def coin_change(coins, amount):
+
+    dp = [amount + 1] * (amount + 1)
+    dp[0] = 0
+
+    for am in range(1, amount + 1):
+        for coin in coins:
+            if amount - coin >= 0:
+                dp[am] = min(dp[am], 1 + dp[am - coin])
+    return dp[amount] if dp[amount] != amount + 1 else -1
