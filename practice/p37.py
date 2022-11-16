@@ -413,6 +413,8 @@ make_target(coins=[4, 1], target=9)
 def coin_change(coins, amount):
 
     dp = [amount + 1] * (amount + 1)
+
+    # to get from index i to target we have to have n coins
     dp[0] = 0
 
     for am in range(1, amount + 1):
@@ -420,3 +422,48 @@ def coin_change(coins, amount):
             if amount - coin >= 0:
                 dp[am] = min(dp[am], 1 + dp[am - coin])
     return dp[amount] if dp[amount] != amount + 1 else -1
+
+
+
+
+
+
+
+
+def coin_change(amount, coins):
+
+    dp = (amount + 1) * [0]
+    dp[0] = 1
+    for i in range(len(coins)-1, -1, -1):
+        next_dp = [0] * (amount + 1) # + 1 cause we have 0
+        next_dp[0] = 1
+        for am in range(1, amount + 1):
+            next_dp[am] = dp[am]
+            if am - coins[i] >= 0:
+                next_dp[am] += next_dp[am - coins[i]]
+            dp = next_dp
+    
+    return dp[amount]
+
+
+
+
+
+
+
+def coin_ways(coins, amount):
+
+    dp = [0] * (amount + 1)
+    dp[0] = 1
+
+    for coin in coins:
+        new_dp = [0] * (amount + 1) 
+        new_dp[0] = 1
+
+        for am in range(amount + 1):
+            new_dp[am] = dp[am] # the element below
+            if am - coin >= 0:
+                new_dp[am] += new_dp[am - coin] # the left element
+            dp = new_dp
+
+    return new_dp[-1]
