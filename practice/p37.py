@@ -467,3 +467,30 @@ def coin_ways(coins, amount):
             dp = new_dp
 
     return new_dp[-1]
+
+
+
+
+
+
+class Solution:
+    def __init__(self, cnt) -> None:
+        self.cnt = 0
+            
+    def tree_sum(self, root, amount):
+
+        def dfs(root, amount):
+
+            if not root: return None
+            test(root, amount)
+            dfs(root.left, amount)
+            dfs(root.right, amount)
+
+        def test(node, amount):
+
+            if node.val == amount: self.cnt += 1
+            if node.val < amount:
+                test(node.left, amount-node.val)
+                test(node.right, amount-node.val)
+
+        return self.cnt
