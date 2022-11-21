@@ -494,3 +494,65 @@ class Solution:
                 test(node.right, amount-node.val)
 
         return self.cnt
+
+
+def lca_in_bst(p, q, root):
+
+    ans = root
+    while ans:
+        if root.val > p.val and root.val > q.val:
+            ans = ans.left
+        elif root.val < p.val and root.val < q.val:
+            ans = ans.right
+        else:
+            return ans
+
+
+def lca_bt(p, q, root):
+
+    # base case
+    if not root: return None
+    if root==q or root==p: return root
+
+    left = lca_bt(p, q, root.left)
+    right = lca_bt(p, q, root.right)
+
+    if right and left: return root
+    else: return right or left
+
+
+from typing import List
+def merge(nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+    """
+    Do not return anything, modify nums1 in-place instead.
+    m: first list len
+    n: second list
+    """
+    nums1, nums2 = nums1[:m], nums2[:n]
+    i, j = m, n
+    ret_list = []
+
+    if not nums1 or not nums2: return nums1 or nums2
+
+    while nums1 != [] and nums2 != [] :
+        print("nums1 = ", nums1)
+        print("---")
+        print("nums2 = ", nums2)
+
+        if nums1[0] < nums2[0]:
+            ret_list.append(nums1.pop(0))
+        else:
+            ret_list.append(nums2.pop(0))
+
+        print("ret_list = ", ret_list)
+        print()
+        
+    while nums1!= [] : 
+        ret_list.append(nums1.append(nums1.pop(0)))
+    while nums2!= [] : 
+        ret_list.append(nums2.append(nums2.pop(0)))
+
+    return ret_list
+
+
+merge(nums1=[1,2,3,0,0,0], m=3, nums2=[2,5,6], n=3)
