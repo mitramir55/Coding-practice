@@ -556,3 +556,64 @@ def merge(nums1: List[int], m: int, nums2: List[int], n: int) -> None:
 
 
 merge(nums1=[1,2,3,0,0,0], m=3, nums2=[2,5,6], n=3)
+
+
+
+
+set("eat")==set("tea")
+
+
+
+[0] * 26
+
+from collections import defaultdict
+def get_anagrams(strs):
+
+    chars_dict = defaultdict(list)
+
+    for s in strs:
+        count = [0] * 26
+        for letter in s: count[ord(letter) - ord("a")] += 1
+        chars_dict[tuple(count)].append(s)
+
+    return chars_dict.values()
+
+
+get_anagrams(['ate', 'eat', 'mean'])
+
+num = 1
+nums = [4,5,6,7,0,1,2]
+
+def search(nums, target):
+    try:
+        return nums.index(target)
+    except:
+        return -1
+
+search(nums, 0)
+
+
+
+1 ^ 5 ^ 10 
+
+
+nums = [1,2,3,1000]
+nums[1000]
+
+
+
+def find_duplicate_val(nums):
+    fast, slow, check = 0, 0, 0
+
+    while True:
+
+        slow = nums[slow]
+        fast = nums[nums[fast]]
+        if slow==fast:
+            break
+
+    while True:
+        slow = nums[slow]
+        check = nums[check]
+        if slow == check: break
+    return check
