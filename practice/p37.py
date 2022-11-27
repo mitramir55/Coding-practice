@@ -617,3 +617,24 @@ def find_duplicate_val(nums):
         check = nums[check]
         if slow == check: break
     return check
+
+
+
+import heapq
+
+class KthLargest:
+
+    def __init__(self, k: int, nums):
+
+        self.kth = k
+        self.heap_ = nums
+        heapq.heapify(self.heap_)
+
+        while len(self.heap_) > self.k:
+            heapq.heappop(self.heap_)
+
+    def add(self, val) -> int:
+        heapq.heappush(self.heap_, val)
+        if len(self.heap_) > self.kth:
+            heapq.heappop(self.heap_)
+        return self.heap_[0]
