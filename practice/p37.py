@@ -638,3 +638,31 @@ class KthLargest:
         if len(self.heap_) > self.kth:
             heapq.heappop(self.heap_)
         return self.heap_[0]
+
+
+for (i,j) in zip(range(2), range(4)):
+    print(i,j)
+
+
+
+s = "cabaf"
+i = 1
+j = 4
+s[i:j] == s[i:j:-1]
+
+s[j-1:i-1:-1] 
+len(s)
+n = len(s)
+
+for i in range(n):
+    for j in range(n, i, -1):
+
+        print('s[i:j] = ', s[i:j])
+        print('s[i:j:-1]', s[j:i:-1])
+        print('i = ', i)
+        print('j = ', j)
+
+        print()
+        if s[i:j] == s[i:j:-1] and len(s[i:j]) > max_len:
+            max_len = len(s[i:j])
+            res_pal = s[i:j]
